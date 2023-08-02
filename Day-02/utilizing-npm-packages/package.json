@@ -1,0 +1,14 @@
+{
+  "name": "a2sv-task",
+  "version": "1.0.0",
+  "description": "Simple task to learn how to use npm packages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Metsehafe-Eyasu",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

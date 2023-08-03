@@ -1,0 +1,32 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.special-button {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.special-button:active {
+  background-color: #ff0000;
+  transform: scale(1.1);
+}
+
+.app {
+  display: flex;
+  flex-flow: column;
+  place-items: center;
+  gap: 2rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}

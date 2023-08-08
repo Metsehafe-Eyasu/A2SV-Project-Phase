@@ -1,11 +1,17 @@
-import Head from 'next/head'
-import { Article, ArticleListProps } from '@/types'
-import ArticleList from '@/components/ArticleList'
-import { server } from '@/config'
+import Head from 'next/head'; // Importing the 'Head' component from Next.js for document metadata
+import { Article, ArticleListProps } from '@/types'; // Importing types related to articles
+import ArticleList from '@/components/ArticleList'; // Importing the 'ArticleList' component
+import { server } from '@/config'; // Importing server configuration
 
-const Home : React.FC<ArticleListProps> = ({ articles }) => {
+/**
+ * Home component - The main component for the home page.
+ * @param {ArticleListProps} props - Props containing the list of articles.
+ * @returns {JSX.Element} - The rendered Home component.
+ */
+const Home: React.FC<ArticleListProps> = ({ articles }) => {
   return (
     <>
+      {/* Setting document metadata using the 'Head' component */}
       <Head>
         <title>Insomniac Blogs</title>
         <meta name="description" content="Stay in touch with the gaming world" />
@@ -13,17 +19,22 @@ const Home : React.FC<ArticleListProps> = ({ articles }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Rendering the ArticleList component with the provided articles */}
       <ArticleList articles={articles} />
     </>
-  )
-}
+  );
+};
 
+/**
+ * Fetches the static props for the Home component.
+ * @returns {Promise} - The props containing the fetched articles.
+ */
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/articles`)
-  const articles : Article[] = await res.json()
+  const res = await fetch(`${server}/api/articles`); // Fetching articles from the server
+  const articles: Article[] = await res.json(); // Parsing the fetched JSON response
   return {
-    props: { articles }
-  }
-}
+    props: { articles } // Passing fetched articles as props
+  };
+};
 
-export default Home
+export default Home; // Exporting the Home component as the default export

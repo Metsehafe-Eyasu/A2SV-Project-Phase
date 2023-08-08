@@ -8,7 +8,7 @@
     },
     {
       "title": "What’s multi-cloud? And why should developers care?",
-      "body": "Most developers don’t care about multi-cloud. But they should, because it’s a key trend among enterprises. Atlassian, for example, is typically a single-cloud SaaS vendor. Its products, such as Jira, Confluence, and Bitbucket, all run on AWS. But Atlassian also offers...",
+      "body": "Most developers don’t care about multi-cloud. But they should, because it’s a key trend among enterprises. Atlassian, for example, is typically a single-cloud SaaS vendor. Its products, such as Jira, Confluence, and Bitbucket, all run on AWS. But Atlassian also offers multiple services that help a company scale...",
       "excerpt": "Most developers don’t care about multi-cloud. But ...",
       "id": "xhxdF0O"
     },
@@ -29,6 +29,12 @@
       "body": "Whether you’re a beginner or a veteran, odds are you’ve heard of the “impostor syndrome,” the nagging feeling that your achievements are undeserved and the fear of being exposed as a fraud. This psychological phenomenon, first identified in 1978, is common among...",
       "excerpt": "Whether you’re a beginner or a veteran, odds are y...",
       "id": "yzMsS3C"
+    },
+    {
+      "title": "new blog",
+      "body": "This blog is mine. I will be adding stuff to it. Such as the quick brown fox jumps over the lazy dog",
+      "excerpt": "This blog is mine. I will be adding stuff to it. S...",
+      "id": "3fF4I5I"
     }
   ]
 }

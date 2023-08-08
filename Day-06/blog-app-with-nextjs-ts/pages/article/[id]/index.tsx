@@ -1,24 +1,35 @@
-import { useState } from "react";
-import { ArticleProps, Article } from "@/types";
-import Link from "next/link";
-import { server } from "@/config";
-import createStyles from "@/styles/Create.module.css";
-import axios from "axios";
-import Popup from "@/components/Popup";
-import { useRouter } from "next/router";
+import { useState } from "react"; // Importing useState hook from 'react'
+import { ArticleProps, Article } from "@/types"; // Importing custom types
+import Link from "next/link"; // Importing the Link component from Next.js for routing
+import { server } from "@/config"; // Importing server configuration
+import createStyles from "@/styles/Create.module.css"; // Importing CSS module for styling
+import axios from "axios"; // Importing axios for making HTTP requests
+import Popup from "@/components/Popup"; // Importing the Popup component
+import { useRouter } from "next/router"; // Importing useRouter from Next.js for routing
 
+/**
+ * Article Component - Renders an article's details and handles editing and deletion.
+ * @param {ArticleProps} article - The article object as props.
+ * @returns {JSX.Element} - The rendered Article component.
+ */
 const article: React.FC<ArticleProps> = ({ article }) => {
-  const [edit, setEdit] = useState(false);
-  const [title, setTitle] = useState(article.title);
-  const [body, setBody] = useState(article.body);
-  const [popup, setPopup] = useState(false);
-  const [popupType, setPopupType] = useState("success");
-  const [popupMessage, setPopupMessage] = useState("");
-  const id = article.id;
-  const router = useRouter();
+  const [edit, setEdit] = useState(false); // State for edit mode
+  const [title, setTitle] = useState(article.title); // State for article title
+  const [body, setBody] = useState(article.body); // State for article body
+  const [popup, setPopup] = useState(false); // State for popup visibility
+  const [popupType, setPopupType] = useState("success"); // State for popup type
+  const [popupMessage, setPopupMessage] = useState(""); // State for popup message
+  const id = article.id; // Extracting article ID from props
+  const router = useRouter(); // Initializing router from Next.js
 
+  /**
+   * Handles form submission to update an article.
+   * Validates input, sends PUT request, and manages popups.
+   * @param {React.FormEvent<HTMLFormElement>} e - Form submission event.
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Validating input before submitting
     if (!title || !body) {
       setPopupType("error");
       setPopupMessage("Please fill in all fields");
@@ -31,9 +42,11 @@ const article: React.FC<ArticleProps> = ({ article }) => {
     if (!confirm("Are you sure you want to update this article?")) {
       return;
     }
-    const article = { title, body, excerpt: body.substring(0, 50) + "..." };
+    // Preparing updated article data
+    const updatedArticle = { title, body, excerpt: body.substring(0, 50) + "..." };
     try {
-      await axios.put(`${server}/api/edit/${id}`, article);
+      // Sending PUT request to update article
+      await axios.put(`${server}/api/edit/${id}`, updatedArticle);
       setEdit(false);
       setPopupType("success");
       setPopupMessage("Article updated successfully");
@@ -53,11 +66,16 @@ const article: React.FC<ArticleProps> = ({ article }) => {
     }
   };
 
+  /**
+   * Handles article deletion.
+   * Sends DELETE request and manages popups.
+   */
   const handleDelete = async () => {
     try {
-      if (!confirm("Are you sure you want to create this article?")) {
+      if (!confirm("Are you sure you want to delete this article?")) {
         return;
       }
+      // Sending DELETE request to delete article
       await axios.delete(`${server}/api/delete/${id}`);
       setPopupType("success");
       setPopupMessage("Article deleted successfully");
@@ -81,6 +99,7 @@ const article: React.FC<ArticleProps> = ({ article }) => {
     <div className={createStyles.container}>
       {popup && <Popup message={popupMessage} type={popupType} />}
       {edit ? (
+        // Render the edit form when in edit mode
         <>
           <form className={createStyles.form} onSubmit={handleSubmit}>
             <div className={createStyles.form_control}>
@@ -105,7 +124,7 @@ const article: React.FC<ArticleProps> = ({ article }) => {
               ></textarea>
             </div>
             <button type="submit" className={createStyles.form_button}>
-              update
+              Update
             </button>
             <button type="button" onClick={() => setEdit(false)}>
               Cancel
@@ -113,6 +132,7 @@ const article: React.FC<ArticleProps> = ({ article }) => {
           </form>
         </>
       ) : (
+        // Render article details and edit/delete buttons when not in edit mode
         <>
           <h1>{article.title}</h1>
           <p>{article.body}</p>
@@ -133,13 +153,17 @@ const article: React.FC<ArticleProps> = ({ article }) => {
         </>
       )}
       <br />
-
       <Link href="/">Go Back</Link>
     </div>
   );
 };
 
-export const getStaticProps = async (context: any) => {
+/**
+ * getServerSideProps Function - Fetches article data on the server side.
+ * @param {Object} context - The context object containing route parameters.
+ * @returns {Object} - The props object containing fetched article data.
+ */
+export const getServerSideProps = async (context: any) => {
   const res = await fetch(`${server}/api/articles/${context.params.id}`);
   const article = await res.json();
   return {
@@ -147,15 +171,4 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/articles`);
-  const articles = await res.json();
-  const ids = articles.map((article: Article) => article.id);
-  const paths = ids.map((id: number) => ({ params: { id: id.toString() } }));
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export default article;
+export default article; // Exporting the Article component as the default export

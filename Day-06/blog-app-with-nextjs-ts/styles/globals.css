@@ -97,3 +97,16 @@ a {
     color-scheme: dark;
   }
 }
+
+button {
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  outline: none;
+}

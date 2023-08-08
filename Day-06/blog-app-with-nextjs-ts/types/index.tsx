@@ -13,3 +13,7 @@ export interface ArticleProps {
 export interface ArticleListProps {
   articles: Article[]
 }
+
+export interface Data {
+  message: string
+}

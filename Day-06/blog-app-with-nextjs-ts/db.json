@@ -1,46 +1,34 @@
 {
   "articles": [
     {
-      "id": "1",
       "title": "GitHub introduces dark mode and auto-merge pull request",
-      "excerpt": "GitHub today announced a bunch of new features at its virtual GitHub...",
-      "body": "GitHub today announced a bunch of new features at its virtual GitHub Universe conference including dark mode, auto-merge pull requests, and Enterprise Server 3.0. In the past couple of years, almost all major apps have rolled out a dark theme for its users, so why not GitHub?"
+      "body": "GitHub today announced a bunch of new features at its virtual GitHub Universe conference including dark mode, auto-merge pull requests, and Enterprise Server 3.0. In the past couple of years, almost all major apps have rolled out a dark theme for its users, so why not GitHub?",
+      "excerpt": "GitHub today announced a bunch of new features at...",
+      "id": "RkGfMjN"
     },
     {
-      "id": "2",
       "title": "What’s multi-cloud? And why should developers care?",
-      "excerpt": "Most developers don’t care about multi-cloud. But they should...",
-      "body": "Most developers don’t care about multi-cloud. But they should, because it’s a key trend among enterprises. Atlassian, for example, is typically a single-cloud SaaS vendor. Its products, such as Jira, Confluence, and Bitbucket, all run on AWS. But Atlassian also offers..."
+      "body": "Most developers don’t care about multi-cloud. But they should, because it’s a key trend among enterprises. Atlassian, for example, is typically a single-cloud SaaS vendor. Its products, such as Jira, Confluence, and Bitbucket, all run on AWS. But Atlassian also offers...",
+      "excerpt": "Most developers don’t care about multi-cloud. But ...",
+      "id": "xhxdF0O"
     },
     {
-      "id": "3",
       "title": "Here is how to make your website more accessible",
-      "excerpt": "An accessible website is one that’s optimized for all people, including those with disabilities...",
-      "body": "An accessible website is one that’s optimized for all people, including those with disabilities. Accessibility encompasses all disabilities that affect access to the Web, including visual, auditory, physical, speech, cognitive, and neurological disabilities. Websites that..."
+      "body": "An accessible website is one that’s optimized for all people, including those with disabilities. Accessibility encompasses all disabilities that affect access to the Web, including visual, auditory, physical, speech, cognitive, and neurological disabilities. Websites that...",
+      "excerpt": "An accessible website is one that’s optimized for ...",
+      "id": "wuU2W0T"
     },
     {
-      "id": "4",
       "title": "Why open ecosystems are the future of app development",
-      "excerpt": "When app stores entered the mainstream tech culture, they exposed developers to an audience of millions...",
-      "body": "When app stores entered the mainstream tech culture, they exposed developers to an audience of millions who were keen to adopt the innovative capabilities of smartphones. But as the number of apps in the stores grew, so did the challenge of competing for user..."
+      "body": "When app stores entered the mainstream tech culture, they exposed developers to an audience of millions who were keen to adopt the innovative capabilities of smartphones. But as the number of apps in the stores grew, so did the challenge of competing for user...",
+      "excerpt": "When app stores entered the mainstream tech cultur...",
+      "id": "dY-ToGS"
     },
     {
-      "id": "5",
       "title": "So you think you chose to be a software engineer?",
-      "excerpt": "Whether you’re a beginner or a veteran, odds are you’ve heard of the...",
-      "body": "Whether you’re a beginner or a veteran, odds are you’ve heard of the “impostor syndrome,” the nagging feeling that your achievements are undeserved and the fear of being exposed as a fraud. This psychological phenomenon, first identified in 1978, is common among..."
-    },
-    {
-      "id": "6",
-      "title": "How to choose a programming language",
-      "excerpt": "Choosing a programming language takes a lot of consideration: what do you want to do with the language...",
-      "body": "Choosing a programming language takes a lot of consideration: what do you want to do with the language, what platforms you're working"
-    },
-    {
-      "title": "test 2",
-      "excerpt": "test 2",
-      "body": "test",
-      "id": "8FsbGfO"
+      "body": "Whether you’re a beginner or a veteran, odds are you’ve heard of the “impostor syndrome,” the nagging feeling that your achievements are undeserved and the fear of being exposed as a fraud. This psychological phenomenon, first identified in 1978, is common among...",
+      "excerpt": "Whether you’re a beginner or a veteran, odds are y...",
+      "id": "yzMsS3C"
     }
   ]
 }

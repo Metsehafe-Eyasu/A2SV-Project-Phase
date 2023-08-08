@@ -1,0 +1,19 @@
+.container {
+  margin: 20px;
+  padding: 20px;
+  /* background-color: #f0f0f0; */
+  border: 1px solid #2e2e2e;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #2e2e2e;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #eee;
+}
+
+.content {
+  font-size: 16px;
+  color: #ddd;
+}

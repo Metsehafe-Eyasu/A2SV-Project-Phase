@@ -2,6 +2,7 @@ import { useEffect } from "react"; // Importing useEffect hook from 'react'
 import { useDispatch } from "react-redux"; // Importing useDispatch hook from 'react-redux'
 import NewTask from "./components/NewTask"; // Importing NewTask component
 import Tasks from "./components/Tasks"; // Importing Tasks component
+import Filter from "./components/Filter"; // Importing Filter component
 import { setTasksAction } from "./reducers/taskReducer"; // Importing setTasksAction from taskReducer
 import { getAllTasks } from "./services/tasks"; // Importing getAllTasks function from services
 import TaskDetails from "./components/TaskDetails"; // Importing TaskDetails component
@@ -27,7 +28,7 @@ const App: React.FC = () => {
   }, []); // The empty dependency array ensures that this effect runs only once on mount
 
   return (
-    <div className="p-12 bg-gray-200 h-screen flex flex-col gap-4">
+    <div className="p-8 bg-gray-200 h-screen flex flex-col gap-4">
       <h1 className="text-4xl text-gray-700 pb-2 border-b border-gray-400">
         Tasks App
       </h1>
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         <div className="col-span-1">
           {/* Rendering NewTask and Tasks components */}
           <NewTask />
+          <Filter />
           <Tasks />
         </div>
         <div className="col-span-2 bg-slate-300 h-full">

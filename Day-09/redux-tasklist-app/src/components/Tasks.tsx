@@ -14,6 +14,7 @@ import { updateTask, deleteTask } from "../services/tasks"; // Importing updateT
 const Tasks: React.FC = () => {
   const tasks: ITask[] = useSelector((state) => state.tasks); // Using useSelector to get tasks from Redux state
   const focusedTask: ITask | null = useSelector((state) => state.focusedTask); // Using useSelector to get focusedTask from Redux state
+  const filter: string = useSelector((state) => state.filter); // Using useSelector to get filter from Redux state
   const dispatch = useDispatch(); // Using useDispatch from react-redux
 
   /**
@@ -43,9 +44,16 @@ const Tasks: React.FC = () => {
     if (focusedTask?.id === task.id) dispatch(setFocusedTaskAction(updatedTask))
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "ALL") return true;
+    else if (filter === "COMPLETED") return task.complete;
+    else if (filter === "PENDING") return !task.complete;
+    return false;
+  });
+
   return (
-    <ul className="mt-4 text-lg flex flex-col gap-2 w-96 h-72 overflow-y-scroll">
-      {tasks.map((task) => (
+    <ul className="mt-2 text-lg flex flex-col gap-2 w-96 h-64 overflow-y-scroll">
+      {filteredTasks.map((task) => (
         <li
           key={task.id}
           className={`text-cyan-950 flex justify-between p-2 ${

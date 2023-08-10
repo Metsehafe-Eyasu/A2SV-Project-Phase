@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // Importing React and useState from 'react'
+import React, { useEffect, useState } from "react"; // Importing React and useState from 'react'
 import { useDispatch, useSelector } from "react-redux"; // Importing useDispatch and useSelector from 'react-redux'
 import { setFocusedTaskAction } from "../reducers/focusedTaskReducer"; // Importing setFocusedTaskAction from focusedTaskReducer
 import { updateTaskAction } from "../reducers/taskReducer"; // Importing updateTaskAction from taskReducer
@@ -19,6 +19,11 @@ const TaskDetails: React.FC = () => {
   const [title, setTitle] = useState(""); // State for edited task title
   const [description, setDescription] = useState(""); // State for edited task description
 
+  useEffect(() => {
+    setTitle(focusedTask?.title || "")
+    setDescription(focusedTask?.description || "")
+  }, [focusedTask])
+
   /**
    * Resets the focused task.
    */
@@ -36,6 +41,7 @@ const TaskDetails: React.FC = () => {
     const updatedTask = { ...focusedTask, title, description };
     await updateTask(updatedTask);
     dispatch(updateTaskAction(updatedTask));
+    dispatch(setFocusedTaskAction(updatedTask))
     setEditMode(false);
   };
 
@@ -64,12 +70,12 @@ const TaskDetails: React.FC = () => {
           <input
             type="text"
             className="border border-gray-400 rounded-lg p-2"
-            value={focusedTask.title}
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
             className="border border-gray-400 rounded-lg p-2"
-            value={focusedTask.description}
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <div className="flex justify-between">

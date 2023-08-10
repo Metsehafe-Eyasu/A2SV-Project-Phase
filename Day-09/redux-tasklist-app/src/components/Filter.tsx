@@ -21,7 +21,7 @@ const Filter = () => {
   return (
     <div>
       <select className="p-2 mt-4 w-96 my-1 rounded-lg text-center" onChange={handleFilter}>
-        <option value="ALL" selected>All</option>
+        <option value="ALL" defaultChecked>All</option>
         <option value="COMPLETED">Completed</option>
         <option value="PENDING">Pending</option>
       </select>

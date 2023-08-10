@@ -1,23 +1,36 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setFocusedTaskAction } from "../reducers/focusedTaskReducer";
-import { updateTaskAction } from "../reducers/taskReducer";
-import { updateTask } from "../services/tasks";
-import { FaceFrownIcon } from "@heroicons/react/24/solid";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import React, { useState } from "react"; // Importing React and useState from 'react'
+import { useDispatch, useSelector } from "react-redux"; // Importing useDispatch and useSelector from 'react-redux'
+import { setFocusedTaskAction } from "../reducers/focusedTaskReducer"; // Importing setFocusedTaskAction from focusedTaskReducer
+import { updateTaskAction } from "../reducers/taskReducer"; // Importing updateTaskAction from taskReducer
+import { updateTask } from "../services/tasks"; // Importing updateTask from tasks service
+import { FaceFrownIcon } from "@heroicons/react/24/solid"; // Importing FaceFrownIcon from Heroicons
+import { XMarkIcon } from "@heroicons/react/20/solid"; // Importing XMarkIcon from Heroicons
 
+/**
+ * TaskDetails Component - Renders the details of a selected task and provides edit functionality.
+ * Uses Redux for state management.
+ * @returns {JSX.Element} - The rendered TaskDetails component.
+ */
 const TaskDetails: React.FC = () => {
-  const dispatch = useDispatch();
-  const focusedTask = useSelector((state) => state.focusedTask);
+  const dispatch = useDispatch(); // Using useDispatch hook from react-redux
+  const focusedTask = useSelector((state) => state.focusedTask); // Using useSelector to get the focused task from Redux state
 
-  const [editMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [editMode, setEditMode] = useState(false); // State for edit mode
+  const [title, setTitle] = useState(""); // State for edited task title
+  const [description, setDescription] = useState(""); // State for edited task description
 
+  /**
+   * Resets the focused task.
+   */
   const handleReset = () => {
     dispatch(setFocusedTaskAction(null));
   };
 
+  /**
+   * Handles form submission to update a task.
+   * Dispatches action to update Redux state and updates the task on the server.
+   * @param {React.FormEvent<HTMLFormElement>} e - Form submission event.
+   */
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const updatedTask = { ...focusedTask, title, description };
@@ -26,6 +39,7 @@ const TaskDetails: React.FC = () => {
     setEditMode(false);
   };
 
+  // Rendering based on the presence of a focused task
   if (focusedTask === null) {
     return (
       <div className="flex items-center justify-center flex-col h-full gap-8">
@@ -45,6 +59,7 @@ const TaskDetails: React.FC = () => {
         />
       </h1>
       {editMode ? (
+        // Render the edit form when in edit mode
         <form className="flex flex-col gap-2" onSubmit={handleUpdate}>
           <input
             type="text"
@@ -70,6 +85,7 @@ const TaskDetails: React.FC = () => {
           </div>
         </form>
       ) : (
+        // Render task details when not in edit mode
         <div>
           <div className="flex flex-col gap-2">
             <div className="flex justify-between">
@@ -100,4 +116,4 @@ const TaskDetails: React.FC = () => {
   );
 };
 
-export default TaskDetails;
+export default TaskDetails; // Exporting the TaskDetails component as the default export

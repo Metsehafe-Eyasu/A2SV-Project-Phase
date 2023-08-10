@@ -1,20 +1,32 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTaskAction } from "../reducers/taskReducer";
-import { addTask } from "../services/tasks";
+import React, { useState } from "react"; // Importing React and useState from 'react'
+import { useDispatch } from "react-redux"; // Importing useDispatch from 'react-redux'
+import { addTaskAction } from "../reducers/taskReducer"; // Importing addTaskAction from taskReducer
+import { addTask } from "../services/tasks"; // Importing addTask from tasks service
 
+/**
+ * NewTask Component - Renders a form to add a new task.
+ * Uses Redux for state management.
+ * @returns {JSX.Element} - The rendered NewTask component.
+ */
 const NewTask: React.FC = () => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const dispatch = useDispatch();
+  const [title, setTitle] = useState<string>(""); // State for task title
+  const [description, setDescription] = useState<string>(""); // State for task description
+  const dispatch = useDispatch(); // Using useDispatch hook from react-redux
+
+  /**
+   * Handles form submission to add a new task.
+   * Dispatches action to update Redux state and adds the task to the server.
+   * @param {React.FormEvent<HTMLFormElement>} e - Form submission event.
+   */
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newTask = await addTask({ title, description, complete: false });
-    dispatch(addTaskAction(newTask));
+    const newTask = await addTask({ title, description, complete: false }); // Adding the task to the server
+    dispatch(addTaskAction(newTask)); // Dispatching action to update Redux state
 
-    setTitle("");
-    setDescription("");
+    setTitle(""); // Resetting title state
+    setDescription(""); // Resetting description state
   };
+
   return (
     <div className="p-2 bg-slate-400 w-96 rounded h-60">
       <h2 className="text-2xl mx-4">Add Task</h2>
@@ -44,4 +56,4 @@ const NewTask: React.FC = () => {
   );
 };
 
-export default NewTask;
+export default NewTask; // Exporting the NewTask component as the default export

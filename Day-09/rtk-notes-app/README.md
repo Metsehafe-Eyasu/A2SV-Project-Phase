@@ -1,27 +1,42 @@
-# React + TypeScript + Vite
+# Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple notes app built with React, Redux Toolkit, Tailwind, json-server, TypeScript, and Vite. It allows users to create, read, update, and delete notes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Create a new note with a title and content.
+- View a list of all notes.
+- Edit an existing note.
+- Delete a note.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React: A JavaScript library for building user interfaces.
+- Redux Toolkit: A library for efficient Redux development.
+- Tailwind CSS: A utility-first CSS framework.
+- json-server: A simple JSON-based backend for development and prototyping.
+- TypeScript: A typed superset of JavaScript.
+- Vite: A fast development build tool.
 
-- Configure the top-level `parserOptions` property like this:
+## Folder Structure
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+The app follows a flat folder structure, which is suitable for simple applications. Here's an overview of the folder structure:
+
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+src
+├── apis
+│   └── notesApi.ts
+├── components
+│   ├── Note.tsx
+│   ├── NoteForm.tsx
+│   └── NoteList.tsx
+├── reducers
+│   └── noteReducer.ts
+├── store
+│   └── index.ts
+├── types
+│   └── index.ts
+├── App.tsx
+├── index.css
+└── main.tsx
+```

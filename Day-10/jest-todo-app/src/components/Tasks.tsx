@@ -1,20 +1,21 @@
 import React from "react"; // Importing React from 'react'
 import { useSelector } from "react-redux"; // Importing useSelector from 'react-redux'
 import { ITask } from "../types"; // Importing custom types
-import { CheckIcon, TrashIcon, ArrowRightIcon } from "@heroicons/react/24/outline"; // Importing CheckIcon and TrashIcon from Heroicons
+import { CheckIcon, TrashIcon } from "@heroicons/react/24/outline"; // Importing CheckIcon and TrashIcon from Heroicons
 import { useDispatch } from "react-redux"; // Importing useDispatch from 'react-redux'
 import { deleteTaskAction, toggleTaskAction } from "../reducers/taskReducer"; // Importing deleteTaskAction and toggleTaskAction from taskReducer
 import { setFocusedTaskAction } from "../reducers/focusedTaskReducer"; // Importing setFocusedTaskAction from focusedTaskReducer
 import { updateTask, deleteTask } from "../services/tasks"; // Importing updateTask and deleteTask from tasks service
+import { RootState } from "../store";
 
 /**
  * Tasks Component - Renders a list of tasks with the ability to delete and toggle them.
  * @returns {JSX.Element} - The rendered Tasks component.
  */
 const Tasks: React.FC = () => {
-  const tasks: ITask[] = useSelector((state) => state.tasks); // Using useSelector to get tasks from Redux state
-  const focusedTask: ITask | null = useSelector((state) => state.focusedTask); // Using useSelector to get focusedTask from Redux state
-  const filter: string = useSelector((state) => state.filter); // Using useSelector to get filter from Redux state
+  const tasks: ITask[] = useSelector((state : RootState) => state.tasks); // Using useSelector to get tasks from Redux state
+  const focusedTask: ITask | null = useSelector((state : RootState) => state.focusedTask); // Using useSelector to get focusedTask from Redux state
+  const filter: string = useSelector((state : RootState) => state.filter); // Using useSelector to get filter from Redux state
   const dispatch = useDispatch(); // Using useDispatch from react-redux
 
   /**
@@ -59,28 +60,21 @@ const Tasks: React.FC = () => {
           className={`text-cyan-950 flex justify-between p-2 ${
             task.complete ? "bg-green-100 line-through" : "bg-red-100"
           } hover:shadow rounded-lg`}
+          onClick={() => {
+            console.log("Task clicked: ", task);
+            dispatch(setFocusedTaskAction(task));
+          }}
         >
           {task.title}
           <div className="flex gap-2">
             <CheckIcon
-              id={`check_${task.id}`}
-              className="check-icon h-8 w-8 p-1 rounded-lg text-gray-700 hover:bg-green-500 hover:text-white"
+              className="h-8 w-8 p-1 rounded-lg text-gray-700 hover:bg-green-500 hover:text-white"
               onClick={() => handleToggle(task)}
             />
             <TrashIcon
-              id={`trash_${task.id}`}
-              className="trash-icon h-8 w-8 p-1 rounded-lg text-gray-700 hover:bg-red-500 hover:text-white"
+              className="h-8 w-8 p-1 rounded-lg text-gray-700 hover:bg-red-500 hover:text-white"
               onClick={() => handleDelete(task)}
             />
-            <ArrowRightIcon
-              id={`arrow_${task.id}`}
-              className="h-8 w-8 p-1 rounded-lg text-gray-700 hover:bg-red-500 hover:text-white"
-              onClick={() => {
-                console.log("Task clicked: ", task);
-                dispatch(setFocusedTaskAction(task));
-              }}
-            />
-
           </div>
         </li>
       ))}

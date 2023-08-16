@@ -5,6 +5,8 @@ import { updateTaskAction } from "../reducers/taskReducer"; // Importing updateT
 import { updateTask } from "../services/tasks"; // Importing updateTask from tasks service
 import { FaceFrownIcon } from "@heroicons/react/24/solid"; // Importing FaceFrownIcon from Heroicons
 import { XMarkIcon } from "@heroicons/react/20/solid"; // Importing XMarkIcon from Heroicons
+import type { RootState } from "../store";
+import { ITask } from "../types";
 
 /**
  * TaskDetails Component - Renders the details of a selected task and provides edit functionality.
@@ -13,7 +15,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid"; // Importing XMarkIcon fr
  */
 const TaskDetails: React.FC = () => {
   const dispatch = useDispatch(); // Using useDispatch hook from react-redux
-  const focusedTask = useSelector((state) => state.focusedTask); // Using useSelector to get the focused task from Redux state
+  const focusedTask = useSelector((state : RootState) => state.focusedTask); // Using useSelector to get the focused task from Redux state
 
   const [editMode, setEditMode] = useState(false); // State for edit mode
   const [title, setTitle] = useState(""); // State for edited task title
@@ -38,7 +40,7 @@ const TaskDetails: React.FC = () => {
    */
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const updatedTask = { ...focusedTask, title, description };
+    const updatedTask = { ...(focusedTask as ITask), title, description };
     await updateTask(updatedTask);
     dispatch(updateTaskAction(updatedTask));
     dispatch(setFocusedTaskAction(updatedTask))
@@ -67,21 +69,23 @@ const TaskDetails: React.FC = () => {
       {editMode ? (
         // Render the edit form when in edit mode
         <form className="flex flex-col gap-2" onSubmit={handleUpdate}>
+          <label htmlFor="title">Title</label>
           <input
-            id={`edit_title`}
+            id="title"
             type="text"
             className="border border-gray-400 rounded-lg p-2"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <label htmlFor="description">Description</label>
           <textarea
-            id={`edit_description`}
+            id="description"
             className="border border-gray-400 rounded-lg p-2"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <div className="flex justify-between">
-            <button id="edit_submit" className="bg-green-400 text-white px-4 py-2 rounded-lg">
+            <button type="submit" className="bg-green-400 text-white px-4 py-2 rounded-lg">
               Save
             </button>
             <button
@@ -108,7 +112,6 @@ const TaskDetails: React.FC = () => {
                 </p>
               </div>
               <button
-                id="edit_button"
                 className="text-gray-700 hover:text-gray-900"
                 onClick={() => setEditMode(true)}
               >

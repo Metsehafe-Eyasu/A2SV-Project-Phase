@@ -32,7 +32,6 @@ const NewTask: React.FC = () => {
       <h2 className="text-2xl mx-4">Add Task</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 m-4">
         <input
-          id="new_title"
           type="text"
           placeholder="Task Title"
           className="border-2 border-gray-400 p-2 rounded-lg focus:outline-none focus:border-cyan-950"
@@ -40,19 +39,17 @@ const NewTask: React.FC = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          id='new_description'
           placeholder="Task Description"
           className="border-2 border-gray-400 p-2 rounded-lg focus:outline-none focus:border-cyan-950"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <button
-          id="new_submit"
           type="submit"
           className="bg-cyan-950 text-white p-2 rounded-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={title === "" || description === ""}
         >
-          Add Task
+          Add-Task
         </button>
       </form>
     </div>
